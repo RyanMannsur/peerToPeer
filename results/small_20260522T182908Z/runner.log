@@ -1,0 +1,6 @@
+[2026-05-22T18:29:08.195385Z] run=small_20260522T182908Z
+[2026-05-22T18:29:08.210219Z] sample=C:\Users\Dell\Documents\ryanfacul\sd\peerToPeer\results\small_20260522T182908Z\sample.bin sha256=c69abcab821408b480537fd793c6a29dfd6eb11152cc8eaa5cdaa14feac0bc18 total_blocks=10
+[2026-05-22T18:29:08.219931Z] seed pid=9984 port=11001
+[2026-05-22T18:29:09.027883Z] peer pid=6904 port=11002
+[2026-05-22T18:29:09.536759Z] checked out_1.bin exists=True checksum_ok=True size_ok=True
+[2026-05-22T18:29:09.537789Z] wrote result=C:\Users\Dell\Documents\ryanfacul\sd\peerToPeer\results\small_20260522T182908Z\result.json

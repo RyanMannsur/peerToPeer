@@ -1,0 +1,12 @@
+2026-05-22 15:36:48,698 INFO peer.client: Vizinho 127.0.0.1:11002 tem 10 blocos
+2026-05-22 15:36:48,703 INFO peer.client: Recebido bloco 0 de 127.0.0.1:11002
+2026-05-22 15:36:48,703 INFO peer.client: Recebido bloco 1 de 127.0.0.1:11002
+2026-05-22 15:36:48,703 INFO peer.client: Recebido bloco 2 de 127.0.0.1:11002
+2026-05-22 15:36:48,704 INFO peer.client: Recebido bloco 3 de 127.0.0.1:11002
+2026-05-22 15:36:48,704 INFO peer.client: Recebido bloco 4 de 127.0.0.1:11002
+2026-05-22 15:36:48,704 INFO peer.client: Recebido bloco 5 de 127.0.0.1:11002
+2026-05-22 15:36:48,704 INFO peer.client: Recebido bloco 6 de 127.0.0.1:11002
+2026-05-22 15:36:48,708 INFO peer.client: Recebido bloco 7 de 127.0.0.1:11002
+2026-05-22 15:36:48,710 INFO peer.client: Recebido bloco 8 de 127.0.0.1:11002
+2026-05-22 15:36:48,710 INFO peer.client: Recebido bloco 9 de 127.0.0.1:11002
+2026-05-22 15:36:48,712 INFO peer.client: Arquivo remontado em C:\Users\Dell\Documents\ryanfacul\sd\peerToPeer\results\peers2_b1024_s10240_20260522T183647Z\out_1.bin

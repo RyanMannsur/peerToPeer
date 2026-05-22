@@ -1,0 +1,44 @@
+{
+  "name": "peers2_b1024_s10240_20260522T182928Z",
+  "timestamp": "20260522T182928Z",
+  "peers": 2,
+  "block_size": 1024,
+  "file_size": 10240,
+  "total_blocks": 10,
+  "sample": {
+    "path": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\sample.bin",
+    "sha256": "da0741df88267ada4a4a7b85adaae130b953d400b3f66c9a79e34ad4f6aef3b9",
+    "size": 10240
+  },
+  "processes": [
+    {
+      "role": "seeder",
+      "port": 11002,
+      "pid": 15088,
+      "args": "C:\\Python314\\python.exe run_peer.py --mode server --host 127.0.0.1 --port 11002 --file C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\sample.bin --block-size 1024",
+      "stdout": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\seeder.out.log",
+      "stderr": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\seeder.err.log"
+    },
+    {
+      "role": "peer",
+      "port": 11003,
+      "pid": 13972,
+      "args": "C:\\Python314\\python.exe run_peer.py --mode peer --host 127.0.0.1 --port 11003 --neighbors 127.0.0.1:11002 --out C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\out_1.bin --block-size 1024 --total-blocks 10",
+      "stdout": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\peer-11003.out.log",
+      "stderr": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\peer-11003.err.log",
+      "out": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\out_1.bin"
+    }
+  ],
+  "details": [
+    {
+      "out": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\out_1.bin",
+      "exists": true,
+      "checksum_ok": true,
+      "size_ok": true,
+      "size": 10240,
+      "sha256": "da0741df88267ada4a4a7b85adaae130b953d400b3f66c9a79e34ad4f6aef3b9"
+    }
+  ],
+  "success": true,
+  "runner_log": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\peers2_b1024_s10240_20260522T182928Z\\runner.log"
+}

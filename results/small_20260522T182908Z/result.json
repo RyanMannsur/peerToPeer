@@ -1,0 +1,44 @@
+{
+  "name": "small_20260522T182908Z",
+  "timestamp": "20260522T182908Z",
+  "peers": 2,
+  "block_size": 1024,
+  "file_size": 10240,
+  "total_blocks": 10,
+  "sample": {
+    "path": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\sample.bin",
+    "sha256": "c69abcab821408b480537fd793c6a29dfd6eb11152cc8eaa5cdaa14feac0bc18",
+    "size": 10240
+  },
+  "processes": [
+    {
+      "role": "seeder",
+      "port": 11001,
+      "pid": 9984,
+      "args": "C:\\Python314\\python.exe run_peer.py --mode server --host 127.0.0.1 --port 11001 --file C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\sample.bin --block-size 1024",
+      "stdout": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\seeder.out.log",
+      "stderr": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\seeder.err.log"
+    },
+    {
+      "role": "peer",
+      "port": 11002,
+      "pid": 6904,
+      "args": "C:\\Python314\\python.exe run_peer.py --mode peer --host 127.0.0.1 --port 11002 --neighbors 127.0.0.1:11001 --out C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\out_1.bin --block-size 1024 --total-blocks 10",
+      "stdout": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\peer-11002.out.log",
+      "stderr": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\peer-11002.err.log",
+      "out": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\out_1.bin"
+    }
+  ],
+  "details": [
+    {
+      "out": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\out_1.bin",
+      "exists": true,
+      "checksum_ok": true,
+      "size_ok": true,
+      "size": 10240,
+      "sha256": "c69abcab821408b480537fd793c6a29dfd6eb11152cc8eaa5cdaa14feac0bc18"
+    }
+  ],
+  "success": true,
+  "runner_log": "C:\\Users\\Dell\\Documents\\ryanfacul\\sd\\peerToPeer\\results\\small_20260522T182908Z\\runner.log"
+}
