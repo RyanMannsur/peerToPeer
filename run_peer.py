@@ -30,6 +30,8 @@ def main():
     ap.add_argument('--block-size', type=int, default=DEFAULT_BLOCK_SIZE)
     ap.add_argument('--concurrency', type=int, default=8, help='concurrency para downloads')
     ap.add_argument('--total-blocks', type=int, default=None, help='total de blocos (evita prompt interativo)')
+    ap.add_argument('--no-seed-after-complete', action='store_true',
+                    help='Encerra o servidor após o download (por padrão, mantém servindo)')
     args = ap.parse_args()
 
     if args.mode == 'server':
@@ -45,14 +47,23 @@ def main():
         client = PeerClient(neighbors, args.out, total_blocks)
         asyncio.run(client.run())
     else:  # peer (hybrid)
+        from peer.node import PeerNode
         neighbors = parse_neighbors(args.neighbors)
-        # if file provided -> seeder initial; otherwise require total_blocks
+        seed_after = not args.no_seed_after_complete
         if args.file:
-            node = __import__('peer.node', fromlist=['PeerNode']).PeerNode(args.host, args.port, neighbors, file=args.file, out=args.out, block_size=args.block_size)
+            node = PeerNode(
+                args.host, args.port, neighbors,
+                file=args.file, out=args.out, block_size=args.block_size,
+                seed_after_complete=seed_after, concurrency=args.concurrency,
+            )
         else:
             total_blocks = args.total_blocks if args.total_blocks is not None else int(input('Total blocks count: '))
-            node = __import__('peer.node', fromlist=['PeerNode']).PeerNode(args.host, args.port, neighbors, file=None, out=args.out, block_size=args.block_size, total_blocks=total_blocks)
-        # configura logging básico
+            node = PeerNode(
+                args.host, args.port, neighbors,
+                file=None, out=args.out, block_size=args.block_size,
+                total_blocks=total_blocks,
+                seed_after_complete=seed_after, concurrency=args.concurrency,
+            )
         import logging
         logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
         asyncio.run(node.start())

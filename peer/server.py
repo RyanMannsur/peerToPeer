@@ -1,6 +1,10 @@
 """Servidor asyncio do peer: envia METADATA e responde a GET <index>."""
 import asyncio
-from .protocol import build_metadata, build_ok
+import logging
+from .protocol import build_metadata, build_ok, build_bitfield
+
+logger = logging.getLogger('peer.server')
+
 
 class PeerServer:
     def __init__(self, host: str, port: int, blocks: list, block_size: int, sha256: str):
@@ -11,19 +15,14 @@ class PeerServer:
         self.sha256 = sha256
 
     async def handle(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
+        peer = writer.get_extra_info('peername')
         # envia metadata assim que a conexão é aceita
         writer.write(build_metadata(len(self.blocks), self.block_size, self.sha256))
+        # envia bitfield com os índices atualmente disponíveis
+        have = [i for i, b in enumerate(self.blocks) if b is not None]
+        writer.write(build_bitfield(have))
         await writer.drain()
-        # envia bitfield indicando índices que este servidor possui
-        try:
-            from .protocol import build_bitfield
-            have = [i for i,b in enumerate(self.blocks) if b is not None]
-            # debug: imprimir indices que este servidor possui
-            print('SERVER: announcing blocks ->', have)
-            writer.write(build_bitfield(have))
-            await writer.drain()
-        except Exception:
-            pass
+        logger.info('Conexão de %s; anunciando %d blocos', peer, len(have))
         try:
             while True:
                 line = await reader.readline()
@@ -31,17 +30,28 @@ class PeerServer:
                     break
                 cmd = line.decode().strip()
                 if cmd.startswith('GET '):
-                    idx = int(cmd.split()[1])
+                    try:
+                        idx = int(cmd.split()[1])
+                    except (ValueError, IndexError):
+                        writer.write(b'ERR\n')
+                        await writer.drain()
+                        continue
                     if 0 <= idx < len(self.blocks):
                         blk = self.blocks[idx]
-                        # responde com header OK <len> e em seguida os bytes do bloco
-                        writer.write(build_ok(len(blk)))
-                        writer.write(blk)
+                        if blk is None:
+                            # ainda não temos esse bloco; respondemos ERR
+                            writer.write(b'ERR\n')
+                        else:
+                            writer.write(build_ok(len(blk)))
+                            writer.write(blk)
+                            logger.info('Enviado bloco %d para %s', idx, peer)
                     else:
                         writer.write(b'ERR\n')
                 else:
                     writer.write(b'ERR\n')
                 await writer.drain()
+        except (asyncio.IncompleteReadError, ConnectionResetError):
+            pass
         finally:
             try:
                 writer.close()
